@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b6c8f78e.css",
+    "main.js": "/static/js/main.f94e47ac.js",
+    "static/js/787.0d020801.chunk.js": "/static/js/787.0d020801.chunk.js",
+    "static/media/blockchain.jpg": "/static/media/blockchain.7b6f014deeae9823904d.jpg",
+    "static/media/cronos.png": "/static/media/cronos.22748ae2f7b3704bfc3b.png",
+    "static/media/binancecoin.png": "/static/media/binancecoin.59480f5fc060f42425a9.png",
+    "static/media/ethereum.png": "/static/media/ethereum.11085666fd2987401e58.png",
+    "static/media/bitcoin.png": "/static/media/bitcoin.0b4d08b39ee81b482bb1.png",
+    "static/media/usdtether.png": "/static/media/usdtether.3c02c55063f906857f7f.png",
+    "static/media/litecoin.png": "/static/media/litecoin.cd0ca65e46fe5d3d7b78.png",
+    "static/media/polkadot.png": "/static/media/polkadot.7434ab298c6131e4f702.png",
+    "static/media/thewitcher-swordofdestiny.jpg": "/static/media/thewitcher-swordofdestiny.eb256c5c12cc0c7eb58c.jpg",
+    "static/media/thewitcher-theladyofthelake.jpg": "/static/media/thewitcher-theladyofthelake.11f4c4329f1035c82412.jpg",
+    "static/media/thewitcher-bloodofelves.jpg": "/static/media/thewitcher-bloodofelves.8c0474d97c3551f598cf.jpg",
+    "static/media/thewitcher-thelastwish.jpg": "/static/media/thewitcher-thelastwish.28aabb3676d0a28c1116.jpg",
+    "static/media/thewitcher-baptismoffire.jpg": "/static/media/thewitcher-baptismoffire.84bd5f5c0dccd9e19094.jpg",
+    "static/media/thewitcher-seasonofstorms.jpg": "/static/media/thewitcher-seasonofstorms.eab8de64b1b85800c78b.jpg",
+    "static/media/thewitcher-timeofcontempt.jpg": "/static/media/thewitcher-timeofcontempt.ba27b2a16dbc953414bb.jpg",
+    "static/media/thewitcher-thetoweroftheswallow.jpg": "/static/media/thewitcher-thetoweroftheswallow.ad0f809c0bc1aafcb2dc.jpg",
+    "index.html": "/index.html",
+    "main.b6c8f78e.css.map": "/static/css/main.b6c8f78e.css.map",
+    "main.f94e47ac.js.map": "/static/js/main.f94e47ac.js.map",
+    "787.0d020801.chunk.js.map": "/static/js/787.0d020801.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6c8f78e.css",
+    "static/js/main.f94e47ac.js"
+  ]
+}
