@@ -11,9 +11,9 @@ function Home() {
                 <Grid item xs={12} sm={6}>
                     <div className="hero-banner">
                         <h2>
-                            Welcome To Our Platform<br />
-                            <span style={{ color: '#222' }}>
-                                Discover your <span style={{ color: '#2B86C5' }}>assets of interest</span> and trade them with ease
+                            <span style={{ color: '#222', fontWeight: 'bold'}}> Welcome To Future Of Crypto</span><br />
+                            <span style={{ color: '#222', fontWeight: 'bold'}}>
+                            Making transaction <span style={{ color: '#2B86C5', fontWeight: 'bold'}}>FUN</span> again!
                             </span>
                         </h2>
                         <Link to="/assets" style={{ textDecoration: 'none'}}>
