@@ -5,6 +5,7 @@ import Navbar from './components/navbar/navbar.js';
 import Home from './components/home/home.js';
 import Asset from './components/asset/assets.js';
 import History from './components/history/history.js';
+import Login from './components/login/form.js';
 import Footer from './footer/footer.js';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/assets" element={<Asset />} />
                 <Route path="/history" element={<History/>} />
+                <Route path="/login" element={<Login/>} />
             </Routes>
             <Footer />
           </div>
