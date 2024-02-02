@@ -23,5 +23,12 @@ export const MenuData = [
         url: '/history',
         cName: 'nav-links',
         icon: <ReceiptIcon className="nav-icons" style={{ verticalAlign: 'middle', paddingRight: '5px' }} />
+    },
+
+    {
+        title: 'login',
+        url: '/login',
+        cName: 'nav-links',
+        icon: <ReceiptIcon className="nav-icons" style={{ verticalAlign: 'middle', paddingRight: '5px' }} />
     }
 ]
