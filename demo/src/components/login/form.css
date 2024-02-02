@@ -1,0 +1,67 @@
+/* Import fonts if needed */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400&display=swap');
+
+/* Global styling */
+* {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+}
+
+/* Container for the authentication forms */
+.auth-form-container {
+    width: 100%;
+    max-width: 400px; /* Adjust width as needed */
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Form labels */
+.auth-form-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Form inputs */
+.auth-form-container input[type="text"],
+.auth-form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Form button */
+.auth-form-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2B86C5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Form button hover effect */
+.auth-form-container button:hover {
+    background-color: #156A9E;
+}
+
+/* Link for switching between forms */
+.auth-form-container button.switch-form {
+    background-color: transparent;
+    border: none;
+    color: #2B86C5;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Link hover effect */
+.auth-form-container button.switch-form:hover {
+    color: #156A9E;
+}
