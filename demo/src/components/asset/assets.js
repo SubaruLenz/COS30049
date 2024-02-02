@@ -7,10 +7,66 @@ function Assets() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCurrency] = useState('');
     const [selectedAuthor, setSelectedAccount] = useState('');
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState(null);
     const [message, setMessage] = useState('');
-    const [balance, setBalance] = useState(0);
+    const [balance, setBalance] = useState({x: null});
 
+    //Newly added
+    const [sign, setSign] = useState({x: "Please select currency and account for transfer"});
+
+    //Declare signs
+    const signEthereum = "Ξ" 
+    const signBitcoin = "₿"
+    const signDollar = "$"
+
+    //Declare Customer Constructor
+    class Customer {
+        constructor(name, bitcoin, ethereum, dollar) {
+            this.name = name;
+            this.bitcoin = bitcoin;
+            this.ethereum = ethereum;
+            this.dollar = dollar;
+        }
+
+        get getName() {
+            return this.name;
+        }
+        set Name(name) {
+            this.name = name;
+        }
+
+        get getBitcoin() {
+            return this.bitcoin;
+        }
+        set setBitcoin(bitcoin) {
+            this.bitcoin = bitcoin;
+        }
+
+        get getEthereum() {
+            return this.ethereum;
+        }
+        set setEthereum(ethereum){
+            this.ethereum = ethereum;
+        }
+
+        get getDollar() {
+            return this.dollar;
+        }
+        set setDollar(dollar) {
+            this.dollar = dollar;
+        }
+    }
+
+    //Assign sample customers
+    Customer[0] = new Customer(
+        "Phan Vu", 100, 100, 100
+    )
+    Customer[1] = new Customer(
+        "Phong Pham", 100, 100, 100
+    )
+    Customer[2] = new Customer(
+        "Nguyen Kien", 100, 100, 100
+    )
 
     const assets = [];
 
@@ -21,7 +77,46 @@ function Assets() {
         );
     });
 
+    //Active after click transfer
     const handleTransfer = () => {
+        //Function transfer money
+        function deposit (name, depositMoney, coinName) {
+            for (let i = 0; i<(Customer.length); i++) {
+                if (name == Customer[i].getName){
+                    switch (coinName) {
+                        case "Bitcoin":
+                            Customer[i].setBitcoin = Customer[i].getBitcoin - depositMoney;
+                            return Customer[i].getBitcoin;
+                        case "Ethereum":
+                            Customer[i].setEtherium = Customer[i].getEthereum - depositMoney;
+                            return Customer[i].getEthereum;
+                        case "Dollar":
+                            Customer[i].setDollar = Customer[i].getDollar - depositMoney;
+                            return Customer[i].getDollar;
+                    }
+                }
+            }
+        };
+
+        //main transfer process
+        if (selectedAuthor != "") {
+            balance.x = deposit(selectedAuthor, amount, selectedCategory);
+
+            //print Sign
+            switch (selectedCategory) {
+                case "Bitcoin":
+                    sign.x = signBitcoin;
+                    break;
+                case "Ethereum":
+                    sign.x = signEthereum;
+                    break;
+                case "Dollar":
+                    sign.x = signDollar;
+                    break;
+            }
+        }
+
+        //Original
         console.log("Transfer amount:", amount);
         console.log("Transfer message:", message);
     };
@@ -47,7 +142,7 @@ function Assets() {
                     </Grid>
                 </Grid>
                 <Paper sx={{padding: '2rem', backgroundColor: '#222', marginBottom: '0.5rem' }}>
-                    <Typography variant="h6" className="white-text-center">Balance: ${balance}</Typography>
+                    <Typography variant="h6" className="white-text-center">{balance.x}{sign.x}</Typography>
                 </Paper>
 
                 <Paper sx={{ padding: '2rem', backgroundColor: '#222', marginBottom: '2rem' }} className="fill-out-area">
@@ -61,7 +156,7 @@ function Assets() {
                                     className="white-text-center"
                                     style={{ backgroundColor: '#999', color: '#fff' }}
                                 >
-                                    <MenuItem value=""><em>None</em></MenuItem>
+                                    <MenuItem value="" selected="selected"><em>None</em></MenuItem>
                                     <MenuItem value="Ethereum">Ethereum</MenuItem>
                                     <MenuItem value="Bitcoin">Bitcoin</MenuItem>
                                     <MenuItem value="Dollar">Dollar</MenuItem>
@@ -77,7 +172,7 @@ function Assets() {
                                     className="white-text-center"
                                     style={{ backgroundColor: '#999', color: '#fff' }}
                                 >
-                                    <MenuItem value=""><em>None</em></MenuItem>
+                                    <MenuItem value="" selected="selected"><em>None</em></MenuItem>
                                     <MenuItem value="Phan Vu">PHAN VU</MenuItem>
                                     <MenuItem value="Phong Pham">PHAM DO TIEN PHONG</MenuItem>
                                     <MenuItem value="Nguyen Kien">NGUYEN TRUNG KIEN </MenuItem>
