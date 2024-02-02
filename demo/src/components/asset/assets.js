@@ -1,133 +1,129 @@
-import "./assetstyles.css"
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import AssetDisplay from './assetdisplay.js'
-import * as images from '../images/images';
+import React, { useState } from 'react';
+import { Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextField, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import { useState } from 'react';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-
-
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: '#64646434',
-    boxShadow: '0 4px 8px rgba(99, 98, 98, 0.336)',
-    color: '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-  }));
+import './assetstyles.css'; // Importing the assetstyle.css file
 
 function Assets() {
-
-const [searchTerm, setSearchTerm] = useState('');
-const [selectedCategory, setSelectedCategory] = useState('');
-const [selectedAuthor, setSelectedAuthor] = useState('');
-
-const assets = [
-  
-];
-
-const filteredAssets = assets.filter(asset => {
-  return (
-    asset.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (selectedCategory === '' || asset.category === selectedCategory)
-  );
-});
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCurrency] = useState('');
+    const [selectedAuthor, setSelectedAccount] = useState('');
+    const [amount, setAmount] = useState('');
+    const [message, setMessage] = useState('');
+    const [balance, setBalance] = useState(0);
 
 
-return (<>
-    <div className = 'asset-container'>
-            <Grid container spacing={0} alignItems="center" justifyContent="center">
-                <Grid item xs={12} sm={6}>
-                    <div className="assetsPage-title">
-                        <h2>
-                            Transfer
-                            <Divider />
-                            <Typography
-                            sx={{ mt: 0.2, ml: 1 }}
-                            color="text.secondary"
-                            display="block"
-                            variant="caption"
-                            >
-                            </Typography>     
-                        </h2>
-                    </div>     
-             </Grid>
-            </Grid>
-        <Box sx={{ flexGrow: 1 }} style={{height: 'auto', overflowY: 'auto', paddingTop:'6vh', paddingBottom: '10vh', paddingLeft:32, paddingRight:16, backgroundColor: '#222'}}>
-            <Grid container spacing={0} className="items-title">
-                <Grid item xs={12} md={12}>
-                    <Item className="items-title"><h1>View our available balance: </h1></Item>
-                    <Item className="items-title"><h1>0$</h1></Item>
+    const assets = [];
+
+    const filteredAssets = assets.filter(asset => {
+        return (
+            asset.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+            (selectedCategory === '' || asset.category === selectedCategory)
+        );
+    });
+
+    const handleTransfer = () => {
+        console.log("Transfer amount:", amount);
+        console.log("Transfer message:", message);
+    };
+
+    return (
+        <>
+            <div className='asset-container'>
+                <Grid container spacing={0} alignItems="center" justifyContent="center">
+                    <Grid item xs={12} sm={6}>
+                        <div className="assetsPage-title">
+                            <h2>
+                                Transfer
+                                <Divider />
+                                <Typography
+                                    sx={{ mt: 0.2, ml: 1 }}
+                                    color="text.secondary"
+                                    display="block"
+                                    variant="caption"
+                                >
+                                </Typography>
+                            </h2>
+                        </div>
+                    </Grid>
                 </Grid>
-            </Grid>
-                <div className="search-filter-container">
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} md={12} lg ={12} >
-                        <input
-                            type="text" 
-                            placeholder="Ammount..." 
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
+                <Paper sx={{padding: '2rem', backgroundColor: '#222', marginBottom: '0.5rem' }}>
+                    <Typography variant="h6" className="white-text-center">Balance: ${balance}</Typography>
+                </Paper>
+
+                <Paper sx={{ padding: '2rem', backgroundColor: '#222', marginBottom: '2rem' }} className="fill-out-area">
+                    <Grid container spacing={2} alignItems="center">
+                        <Grid item xs={12} md={6}>
+                            <FormControl fullWidth>
+                                <InputLabel className="white-text-center">Currency</InputLabel>
+                                <Select
+                                    value={selectedCategory}
+                                    onChange={(e) => setSelectedCurrency(e.target.value)}
+                                    className="white-text-center"
+                                    style={{ backgroundColor: '#999', color: '#fff' }}
+                                >
+                                    <MenuItem value=""><em>None</em></MenuItem>
+                                    <MenuItem value="Ethereum">Ethereum</MenuItem>
+                                    <MenuItem value="Bitcoin">Bitcoin</MenuItem>
+                                    <MenuItem value="Dollar">Dollar</MenuItem>
+                                </Select>
+                            </FormControl>
                         </Grid>
-                        <Grid item xs={12} md={12} lg ={12} >
-                        <input
-                            type="text" 
-                            placeholder="Message..." 
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
+                        <Grid item xs={12} md={6}>
+                            <FormControl fullWidth>
+                                <InputLabel className="white-text-center">Account</InputLabel>
+                                <Select
+                                    value={selectedAuthor}
+                                    onChange={(e) => setSelectedAccount(e.target.value)}
+                                    className="white-text-center"
+                                    style={{ backgroundColor: '#999', color: '#fff' }}
+                                >
+                                    <MenuItem value=""><em>None</em></MenuItem>
+                                    <MenuItem value="Phan Vu">PHAN VU</MenuItem>
+                                    <MenuItem value="Phong Pham">PHAM DO TIEN PHONG</MenuItem>
+                                    <MenuItem value="Nguyen Kien">NGUYEN TRUNG KIEN </MenuItem>
+                                </Select>
+                            </FormControl>
                         </Grid>
-                    
-                <Grid container spacing={2}>
-                        <Grid item xs={6} md={6} >
-                        <FormControl fullWidth className="form-assets">
-                            <InputLabel className="white-text-center">Currency</InputLabel>
-                            <Select
-                            value={selectedCategory}
-                            className="white-text-center"
-                            onChange={(e) => setSelectedCategory(e.target.value)}
-                            >
-                            <MenuItem value=""><em>None</em></MenuItem>
-                            <MenuItem value="Ethereum">Ethereum</MenuItem>
-                            <MenuItem value="Bitcoin">Bitcoin</MenuItem>
-                            <MenuItem value="Bitcoin">Dollar</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <Grid item xs={12}>
+                            <TextField
+                                label="Amount"
+                                type="number"
+                                fullWidth
+                                value={amount}
+                                onChange={(e) => setAmount(e.target.value)}
+                                InputLabelProps={{ className: "white-text-center" }}
+                                InputProps={{
+                                    className: "white-text-center",
+                                    style: { backgroundColor: '#999', color: '#fff' }
+                                }}
+                            />
                         </Grid>
-                        <Grid item xs={6} md ={6} style={{marginBottom: '2rem'}}>
-                        <FormControl fullWidth className="form-assets">
-                            <InputLabel className="white-text-center">Account</InputLabel>
-                            <Select
-                            value={selectedAuthor}
-                            className="white-text-center"
-                            onChange={(e) => setSelectedAuthor(e.target.value)}
-                            >
-                                <MenuItem value=""><em>None</em></MenuItem>
-                                <MenuItem value="Phan Vu">PHAN VU</MenuItem>
-                                <MenuItem value="Phong Pham">PHAM DO TIEN PHONG</MenuItem>
-                                <MenuItem value="Nguyen Kien">NGUYEN TRUNG KIEN </MenuItem>
-                            </Select>
-                        </FormControl>
+                        <Grid item xs={12}>
+                            <TextField
+                                label="Message"
+                                fullWidth
+                                multiline
+                                rows={4}
+                                value={message}
+                                onChange={(e) => setMessage(e.target.value)}
+                                InputLabelProps={{ className: "white-text-center" }}
+                                InputProps={{
+                                    className: "white-text-center",
+                                    style: { backgroundColor: '#999', color: '#fff' }
+                                }}
+                            />
                         </Grid>
-                        {filteredAssets.map((asset, index) => (
-                            <Grid item xs={12} sm={12} lg={3} xl={3} style={{marginBottom: '2rem', paddingTop:'6vh'}}>
-                            <AssetDisplay key={index} {...asset} />
+                        <Grid item xs={12}>
+                            <Grid container justifyContent="center">
+                                <Button variant="contained" color="primary" onClick={handleTransfer}>
+                                Transfer
+                                </Button>
+                            </Grid>
                         </Grid>
-                        ))}
-                </Grid>
-                </Grid>
-                </div>
-        </Box>
-        
-    </div>
-    </>
+                    </Grid>
+                </Paper>
+            </div>
+        </>
     );
 }
 
