@@ -62,7 +62,8 @@ return (<>
         <Box sx={{ flexGrow: 1 }} style={{height: 'auto', overflowY: 'auto', paddingTop:'6vh', paddingBottom: '10vh', paddingLeft:32, paddingRight:16, backgroundColor: '#222'}}>
             <Grid container spacing={0} className="items-title">
                 <Grid item xs={12} md={12}>
-                    <Item className="items-title"><h1>View our available balance: </h1></Item> // Coi chỉnh thuật toán cho cái này nó show cái số dư tài khoản
+                    <Item className="items-title"><h1>View our available balance: </h1></Item>
+                    <Item className="items-title"><h1>0$</h1></Item>
                 </Grid>
             </Grid>
                 <div className="search-filter-container">

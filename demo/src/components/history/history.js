@@ -39,7 +39,7 @@ function History() {
                     </div>     
              </Grid>
             </Grid>
-        <Box sx={{ flexGrow: 1 }} style={{paddingTop:'3vh', paddingBottom: '10vh', paddingLeft:32, paddingRight:16, backgroundColor: '#222'}}>
+        <Box sx={{ flexGrow: 1 }} style={{paddingTop:'3vh', paddingBottom: '40vh', paddingLeft:32, paddingRight:16, backgroundColor: '#222'}}>
             <Grid container spacing={0}>
                 <Grid item xs={12} md={12} className="previous-trans-title">
                     <Item className="previous-trans-title"><h1>View all previous transactions.</h1></Item>
