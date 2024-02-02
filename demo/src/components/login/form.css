@@ -1,10 +1,20 @@
-/* Import fonts if needed */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;400&display=swap');
+/* form.css */
 
 /* Global styling */
 * {
-    font-family: 'Manrope', sans-serif;
-    font-weight: 400;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+label {
+    color: #fff
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FF3CAC; /* Match the background color of Home.js */
+    background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%); /* Match the gradient of Home.js */
 }
 
 /* Container for the authentication forms */
@@ -13,15 +23,17 @@
     max-width: 400px; /* Adjust width as needed */
     margin: auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #222;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 /* Form labels */
 .auth-form-container label {
     display: block;
     margin-bottom: 5px;
+    color: #fff;
 }
 
 /* Form inputs */
@@ -30,9 +42,10 @@
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #ffffff;
     border-radius: 4px;
     box-sizing: border-box;
+    color: #fff;
 }
 
 /* Form button */

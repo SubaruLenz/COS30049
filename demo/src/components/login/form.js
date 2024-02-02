@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
+import Login from './login.jsx';
+import Register from './register.jsx';
 import './form.css';
-import { Login } from './login.jsx';
-import { Register } from './register.jsx';
 
-function Form() {
-  const [currentForm, setCurrentForm] = useState("log in");
+const Form = () => {
+    const [currentForm, setCurrentForm] = useState('login');
 
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  };
+    const switchForm = (formName) => {
+        setCurrentForm(formName);
+    };
 
-  return (
-    <div classname="form">
-      {
-        currentForm =="log in " ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
-      }
-    </div>
-  );
-}
+    return (
+        <div>
+            {currentForm === 'login' ? <Login switchForm={switchForm} /> : <Register switchForm={switchForm} />}
+        </div>
+    );
+};
+
 export default Form;
