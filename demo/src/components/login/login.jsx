@@ -1,17 +1,19 @@
-
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Link, Grid, Paper } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './form.css';
 
 const Login = ({ switchForm }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (username && password) {
+        if (username === 'admin' && password === '123456') {
             console.log('Username:', username);
             console.log('Password:', password);
+            navigate('/assets'); // Navigate to the transfer page upon successful login
         }
     };
 
