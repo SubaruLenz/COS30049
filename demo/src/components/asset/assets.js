@@ -31,29 +31,29 @@ function Assets() {
         get getName() {
             return this.name;
         }
-        set Name(name) {
-            this.name = name;
+        set setName(setname) {
+            this.name = setname;
         }
 
         get getBitcoin() {
             return this.bitcoin;
         }
-        set setBitcoin(bitcoin) {
-            this.bitcoin = bitcoin;
+        set setBitcoin(setbitcoin) {
+            this.bitcoin = setbitcoin;
         }
 
         get getEthereum() {
             return this.ethereum;
         }
-        set setEthereum(ethereum){
-            this.ethereum = ethereum;
+        set setEthereum(setethereum){
+            this.ethereum = setethereum;
         }
 
         get getDollar() {
             return this.dollar;
         }
-        set setDollar(dollar) {
-            this.dollar = dollar;
+        set setDollar(setdollar) {
+            this.dollar = setdollar;
         }
     }
 
@@ -77,43 +77,76 @@ function Assets() {
         );
     });
 
-    //Active after click transfer
-    const handleTransfer = () => {
-        //Function transfer money
-        function deposit (name, depositMoney, coinName) {
-            for (let i = 0; i<(Customer.length); i++) {
-                if (name == Customer[i].getName){
-                    switch (coinName) {
-                        case "Bitcoin":
-                            Customer[i].setBitcoin = Customer[i].getBitcoin - depositMoney;
-                            return Customer[i].getBitcoin;
-                        case "Ethereum":
-                            Customer[i].setEtherium = Customer[i].getEthereum - depositMoney;
-                            return Customer[i].getEthereum;
-                        case "Dollar":
-                            Customer[i].setDollar = Customer[i].getDollar - depositMoney;
-                            return Customer[i].getDollar;
-                    }
+    //Get balace for customers
+    function info (name, coinName) {
+        for (let i = 0; i<3; i++) {
+            if (name === Customer[i].getName){
+                switch (coinName) {
+                    case "Bitcoin":
+                        return Customer[i].getBitcoin;
+                    case "Ethereum":
+                        return Customer[i].getEthereum;
+                    case "Dollar":
+                        return Customer[i].getDollar;
+                    default:
+                        console.log("Error: In info function");
                 }
             }
-        };
+        }
+    }
 
-        //main transfer process
-        if (selectedAuthor != "") {
-            balance.x = deposit(selectedAuthor, amount, selectedCategory);
-
-            //print Sign
-            switch (selectedCategory) {
-                case "Bitcoin":
-                    sign.x = signBitcoin;
-                    break;
-                case "Ethereum":
-                    sign.x = signEthereum;
-                    break;
-                case "Dollar":
-                    sign.x = signDollar;
-                    break;
+    //Function transfer money
+    function deposit (name, depositMoney, coinName) {
+        for (let i = 0; i<3; i++) {
+            if (name === Customer[i].getName){
+                switch (coinName) {
+                    case "Bitcoin":
+                        Customer[i].setBitcoin = Customer[i].getBitcoin - depositMoney;
+                        break;
+                    case "Ethereum":
+                        Customer[i].setEtherium = Customer[i].getEthereum - depositMoney;
+                        break;
+                    case "Dollar":
+                        Customer[i].setDollar = Customer[i].getDollar - depositMoney;
+                        break;
+                    default:
+                        console.log("Error: In deposit function");
+                }
             }
+        }
+    }
+
+    if (selectedAuthor !== "" && selectedCategory !== "") {
+        //Print balance
+        balance.x = "Balance: " + info(selectedAuthor, selectedCategory);
+        //Print Sign
+        switch (selectedCategory) {
+            case "Bitcoin":
+                sign.x = signBitcoin;
+                break;
+            case "Ethereum":
+                sign.x = signEthereum;
+                break;
+            case "Dollar":
+                sign.x = signDollar;
+                break;
+            default:
+                console.log("Error: before transfer clicked");
+        }
+    } else {
+        balance.x = null;
+        sign.x = "Please select currency and account for transfer";
+    }
+        
+    //Active after click transfer
+    function handleTransfer() {
+        //main transfer process
+        if (selectedAuthor !== ""  && selectedCategory !== "") {
+            //Transfer process
+            deposit(selectedAuthor, amount, selectedCategory);
+        } else {
+            balance.x = null;
+            sign.x = "Please select currency and account for transfer";
         }
 
         //Original
@@ -210,7 +243,7 @@ function Assets() {
                         </Grid>
                         <Grid item xs={12}>
                             <Grid container justifyContent="center">
-                                <Button variant="contained" color="primary" onClick={handleTransfer}>
+                                <Button variant="contained" color="primary" onClick={handleTransfer()}>
                                 Transfer
                                 </Button>
                             </Grid>
