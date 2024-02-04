@@ -91,11 +91,12 @@ function deposit (name, depositMoney, coinName) {
     }
 }
 
+//Render function
 function Assets() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCurrency] = useState('');
     const [selectedAuthor, setSelectedAccount] = useState('');
-    const [amount, setAmount] = useState(null);
+    const [amount, setAmount] = useState('');
     const [message, setMessage] = useState('');
     const [balance, setBalance] = useState({x: null});
 
@@ -134,7 +135,7 @@ function Assets() {
                 console.log("Error: before transfer clicked");
         }
     } else {
-        balance.x = null;
+        balance.x = '';
         sign.x = "Please select currency and account for transfer";
     }
         
@@ -142,16 +143,22 @@ function Assets() {
     const handleTransfer = () => {
         //main transfer process
         if (selectedAuthor !== ""  && selectedCategory !== "") {
-            //Transfer process
-            deposit(selectedAuthor, amount, selectedCategory);
+            if(amount !== ''){
+                //Transfer process
+                deposit(selectedAuthor, amount, selectedCategory);
+                setBalance({ x: "Balance: " + info(selectedAuthor, selectedCategory) });
+            } else {
+                balance.x = null;
+                sign.x = "Enter an amount you want to transfer";
+            }
         } else {
-            balance.x = null;
+            balance.x = '';
             sign.x = "Please select currency and account for transfer";
         }
 
         //Original
-        //console.log("Transfer amount:", amount);
-        //console.log("Transfer message:", message);
+        console.log("Transfer amount:", amount);
+        console.log("Transfer message:", message);
     };
 
     return (
@@ -175,7 +182,9 @@ function Assets() {
                     </Grid>
                 </Grid>
                 <Paper sx={{padding: '2rem', backgroundColor: '#222', marginBottom: '0.5rem' }}>
-                    <Typography variant="h6" className="white-text-center">{balance.x}{sign.x}</Typography>
+                    <Typography variant="h6" className="white-text-center">
+                        {balance.x}{sign.x}
+                    </Typography>
                 </Paper>
 
                 <Paper sx={{ padding: '2rem', backgroundColor: '#222', marginBottom: '2rem' }} className="fill-out-area">
