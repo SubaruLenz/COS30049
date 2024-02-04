@@ -3,6 +3,94 @@ import { Button, FormControl, Grid, InputLabel, MenuItem, Paper, Select, TextFie
 import Divider from '@mui/material/Divider';
 import './assetstyles.css'; // Importing the assetstyle.css file
 
+//Declare Customer Constructor
+class Customer {
+    constructor(name, bitcoin, ethereum, dollar) {
+        this.name = name;
+        this.bitcoin = bitcoin;
+        this.ethereum = ethereum;
+        this.dollar = dollar;
+    }
+
+    get getName() {
+        return this.name;
+    }
+    set setName(setname) {
+        this.name = setname;
+    }
+
+    get getBitcoin() {
+        return this.bitcoin;
+    }
+    set setBitcoin(setbitcoin) {
+        this.bitcoin = setbitcoin;
+    }
+
+    get getEthereum() {
+        return this.ethereum;
+    }
+    set setEthereum(setethereum){
+        this.ethereum = setethereum;
+    }
+
+    get getDollar() {
+        return this.dollar;
+    }
+    set setDollar(setdollar) {
+        this.dollar = setdollar;
+    }
+}
+
+//Assign sample customers
+Customer[0] = new Customer(
+    "Phan Vu", 100, 100, 100
+)
+Customer[1] = new Customer(
+    "Phong Pham", 100, 100, 100
+)
+Customer[2] = new Customer(
+    "Nguyen Kien", 100, 100, 100
+)
+
+//Get balace for customers
+function info (name, coinName) {
+    for (let i = 0; i<3; i++) {
+        if (name === Customer[i].getName){
+            switch (coinName) {
+                case "Bitcoin":
+                    return Customer[i].getBitcoin;
+                case "Ethereum":
+                    return Customer[i].getEthereum;
+                case "Dollar":
+                    return Customer[i].getDollar;
+                default:
+                    console.log("Error: In info function");
+            }
+        }
+    }
+}
+
+//Function transfer money
+function deposit (name, depositMoney, coinName) {
+    for (let i = 0; i<3; i++) {
+        if (name === Customer[i].getName){
+            switch (coinName) {
+                case "Bitcoin":
+                    Customer[i].setBitcoin = Customer[i].getBitcoin - depositMoney;
+                    break;
+                case "Ethereum":
+                    Customer[i].setEthereum = Customer[i].getEthereum - depositMoney;
+                    break;
+                case "Dollar":
+                    Customer[i].setDollar = Customer[i].getDollar - depositMoney;
+                    break;
+                default:
+                    console.log("Error: In deposit function");
+            }
+        }
+    }
+}
+
 function Assets() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCurrency] = useState('');
@@ -19,55 +107,6 @@ function Assets() {
     const signBitcoin = "₿"
     const signDollar = "$"
 
-    //Declare Customer Constructor
-    class Customer {
-        constructor(name, bitcoin, ethereum, dollar) {
-            this.name = name;
-            this.bitcoin = bitcoin;
-            this.ethereum = ethereum;
-            this.dollar = dollar;
-        }
-
-        get getName() {
-            return this.name;
-        }
-        set setName(setname) {
-            this.name = setname;
-        }
-
-        get getBitcoin() {
-            return this.bitcoin;
-        }
-        set setBitcoin(setbitcoin) {
-            this.bitcoin = setbitcoin;
-        }
-
-        get getEthereum() {
-            return this.ethereum;
-        }
-        set setEthereum(setethereum){
-            this.ethereum = setethereum;
-        }
-
-        get getDollar() {
-            return this.dollar;
-        }
-        set setDollar(setdollar) {
-            this.dollar = setdollar;
-        }
-    }
-
-    //Assign sample customers
-    Customer[0] = new Customer(
-        "Phan Vu", 100, 100, 100
-    )
-    Customer[1] = new Customer(
-        "Phong Pham", 100, 100, 100
-    )
-    Customer[2] = new Customer(
-        "Nguyen Kien", 100, 100, 100
-    )
-
     const assets = [];
 
     const filteredAssets = assets.filter(asset => {
@@ -76,45 +115,6 @@ function Assets() {
             (selectedCategory === '' || asset.category === selectedCategory)
         );
     });
-
-    //Get balace for customers
-    function info (name, coinName) {
-        for (let i = 0; i<3; i++) {
-            if (name === Customer[i].getName){
-                switch (coinName) {
-                    case "Bitcoin":
-                        return Customer[i].getBitcoin;
-                    case "Ethereum":
-                        return Customer[i].getEthereum;
-                    case "Dollar":
-                        return Customer[i].getDollar;
-                    default:
-                        console.log("Error: In info function");
-                }
-            }
-        }
-    }
-
-    //Function transfer money
-    function deposit (name, depositMoney, coinName) {
-        for (let i = 0; i<3; i++) {
-            if (name === Customer[i].getName){
-                switch (coinName) {
-                    case "Bitcoin":
-                        Customer[i].setBitcoin = Customer[i].getBitcoin - depositMoney;
-                        break;
-                    case "Ethereum":
-                        Customer[i].setEtherium = Customer[i].getEthereum - depositMoney;
-                        break;
-                    case "Dollar":
-                        Customer[i].setDollar = Customer[i].getDollar - depositMoney;
-                        break;
-                    default:
-                        console.log("Error: In deposit function");
-                }
-            }
-        }
-    }
 
     if (selectedAuthor !== "" && selectedCategory !== "") {
         //Print balance
@@ -139,7 +139,7 @@ function Assets() {
     }
         
     //Active after click transfer
-    function handleTransfer() {
+    const handleTransfer = () => {
         //main transfer process
         if (selectedAuthor !== ""  && selectedCategory !== "") {
             //Transfer process
@@ -150,8 +150,8 @@ function Assets() {
         }
 
         //Original
-        console.log("Transfer amount:", amount);
-        console.log("Transfer message:", message);
+        //console.log("Transfer amount:", amount);
+        //console.log("Transfer message:", message);
     };
 
     return (
@@ -189,7 +189,7 @@ function Assets() {
                                     className="white-text-center"
                                     style={{ backgroundColor: '#999', color: '#fff' }}
                                 >
-                                    <MenuItem value="" selected="selected"><em>None</em></MenuItem>
+                                    <MenuItem value=""><em>None</em></MenuItem>
                                     <MenuItem value="Ethereum">Ethereum</MenuItem>
                                     <MenuItem value="Bitcoin">Bitcoin</MenuItem>
                                     <MenuItem value="Dollar">Dollar</MenuItem>
@@ -205,7 +205,7 @@ function Assets() {
                                     className="white-text-center"
                                     style={{ backgroundColor: '#999', color: '#fff' }}
                                 >
-                                    <MenuItem value="" selected="selected"><em>None</em></MenuItem>
+                                    <MenuItem value=""><em>None</em></MenuItem>
                                     <MenuItem value="Phan Vu">PHAN VU</MenuItem>
                                     <MenuItem value="Phong Pham">PHAM DO TIEN PHONG</MenuItem>
                                     <MenuItem value="Nguyen Kien">NGUYEN TRUNG KIEN </MenuItem>
@@ -243,7 +243,7 @@ function Assets() {
                         </Grid>
                         <Grid item xs={12}>
                             <Grid container justifyContent="center">
-                                <Button variant="contained" color="primary" onClick={handleTransfer()}>
+                                <Button variant="contained" color="primary" onClick={handleTransfer}>
                                 Transfer
                                 </Button>
                             </Grid>
